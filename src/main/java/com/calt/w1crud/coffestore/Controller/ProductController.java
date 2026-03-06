@@ -9,44 +9,48 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/products")
 public class ProductController {
     @Autowired
     private ProductService productService;
-    @GetMapping("/products")
+    @GetMapping("/")
     //return String becase the whole html site are Strings!!!
-    public String getProduct(Model model){
-        model.addAttribute("products",productService.getAllProducts());
+    public String getProduct(){
+        List<Product> productList = productService.getAllProducts();
+
         return "products";
     }
 
-    @GetMapping("/products/edit/{id}")
+    @PutMapping("/edit/{id}")
     //return String becase the whole html site are Strings!!!
     public String editProduct(@PathVariable("id") String id, Model model){
-        model.addAttribute("aProduct",productService.getProductID(id)
-        );
+        model.addAttribute("aProduct",productService.getProductID(id));
+
         return "product-form";
     }
-    @GetMapping("/products/new")
+    @PostMapping("/new")
     //return String becase the whole html site are Strings!!!
     public String editProduct(Model model){
         model.addAttribute("aProduct",new Product());
         return "product-form";
     }
-    @PostMapping("/products/save")
+    @PostMapping("/save")
     public String updateProduct(@ModelAttribute("aProduct") Product newProduct
            ){
         productService.saveProduct(newProduct);
     return "redirect:/products";
     }
-    @PostMapping("/products/add")
+    @PostMapping("/add")
     public ResponseEntity<Product> addProduct(@RequestBody RequestProduct productDto){
 
         Product newProduct = new Product(productDto.getId(),productDto.getName(),productDto.getQuantity(),productDto.getPrice());
         productService.saveProduct(newProduct);
         return ResponseEntity.status(201).body(newProduct);
     }
-    @DeleteMapping("/products/delete")
+    @DeleteMapping("/delete")
     public ResponseEntity<Product> deleteProduct(@RequestBody RequestProduct productDto){
         Product tProduct = new Product(productDto.getId(),productDto.getName(),productDto.getQuantity(),productDto.getPrice());
         productService.deleteProduct(tProduct);
