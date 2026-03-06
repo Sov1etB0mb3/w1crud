@@ -5,10 +5,12 @@ import com.calt.w1crud.coffeestore.Entity.Product;
 import com.calt.w1crud.coffeestore.Service.ProductService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.swing.text.html.parser.Entity;
 import java.util.List;
@@ -65,7 +67,9 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable("id") String id){
+
         productService.deleteProduct(productService.getProductByID(id));
+
         return ResponseEntity.status(HttpStatus.OK).body("Deleted!");
     }
 }

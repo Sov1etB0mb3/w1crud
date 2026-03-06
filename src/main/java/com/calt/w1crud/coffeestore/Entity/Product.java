@@ -1,18 +1,24 @@
 package com.calt.w1crud.coffeestore.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Product")
 public class Product {
     @Id
     @Column(name="ID", columnDefinition = "CHAR(10)")
+    @NotNull
     private String id;
     @Column(name="Name", columnDefinition = "VARCHAR(20)",nullable = false)
-//    @NotBlank(message = "Name is required!")
+    @NotBlank(message = "Name is required!")
     private String name;
     @Column(name="Quantity", nullable = false)
-//    @NotBlank(message = "")
+    @NotBlank(message = "Quantity is required!!!!!!")
+    @Min(value = 0,message = "Must be a number > 0!")
     private int quantity;
     @Column(name="Price")
     private double price;

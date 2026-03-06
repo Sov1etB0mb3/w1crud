@@ -1,34 +1,27 @@
-package com.calt.w1crud.coffeestore.Entity;
+package com.calt.w1crud.coffeestore.DTO;
 
+import com.calt.w1crud.coffeestore.Entity.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 //@NoArgsConstructor
 //@AllArgsConstructor
-@Entity
-@Table(name="Category")
 
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+
+public class RequestCategory {
+
     private Long id;
-    @Column(name = "Name",columnDefinition = "VARCHAR(50)",nullable = false)
-    @NotBlank(message = "Name is a must have!")
+
     private String name;
-    @Column(name = "Description",columnDefinition = "VARCHAR(100)")
     private String description;
-    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     List<Product> listProduct = new ArrayList<>();
-    public Category() {
+    public RequestCategory() {
     }
 
-    public Category( String name, String description) {
+    public RequestCategory(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -65,12 +58,12 @@ public class Category {
                 ", description='" + description + '\'' +
                 '}';
     }
-    public void addProduct(Product product){
-        this.listProduct.add(product);
-        product.setCategory(this);
-    }
-    public void deleteProduct(Product product){
-        this.listProduct.remove(product);
-        product.setCategory(null);
-    }
+//    public void addProduct(Product product){
+//        this.listProduct.add(product);
+//        product.setCategory(this);
+//    }
+//    public void deleteProduct(Product product){
+//        this.listProduct.remove(product);
+//        product.setCategory(null);
+//    }
 }

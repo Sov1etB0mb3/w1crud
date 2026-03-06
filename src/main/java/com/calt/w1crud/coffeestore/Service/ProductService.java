@@ -6,8 +6,11 @@ import com.calt.w1crud.coffeestore.Repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.swing.text.html.parser.Entity;
 import java.util.List;
@@ -37,7 +40,13 @@ public class ProductService {
         //productRepository.findById(id) will return an Optional<Type>
     }
     public void deleteProduct(Product product){
-        productRepository.delete(product);
+        try{
+            productRepository.delete(product);
+        }
+          catch (DataIntegrityViolationException e){
+            throw new ResponseStatusException(HttpStatus.CONFLICT,"Can't delete!");
+        }
+
     }
 
 }

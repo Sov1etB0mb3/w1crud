@@ -11,5 +11,7 @@ import java.util.List;
 // JpaRepo demands two paramaters. The first one is the class that need a repo, the second one is data type for Id column
 public interface CategoryRepository extends JpaRepository<Category,Long> {
     List<Category> findCategoriesByName(String name);//select * from Category where Name like '%name%'
-    
+
+    @Override
+    void deleteAllById(Iterable<? extends Long> longs);
 }
