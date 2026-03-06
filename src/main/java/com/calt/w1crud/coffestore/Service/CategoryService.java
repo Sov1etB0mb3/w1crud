@@ -1,7 +1,7 @@
 package com.calt.w1crud.coffestore.Service;
 
-import com.calt.crudw1.Entity.Category;
-import com.calt.crudw1.Repository.CategoryRepository;
+import com.calt.w1crud.coffestore.Entity.Category;
+import com.calt.w1crud.coffestore.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
