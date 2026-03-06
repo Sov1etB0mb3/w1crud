@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -26,6 +28,17 @@ public class ProductController {
 
         return ResponseEntity.ok(productList);
     }
+    @GetMapping("/{id}")
+    //return String becase the whole html site are Strings!!!
+    public ResponseEntity<Product> getProduct(@PathVariable("id") String id){
+        Product rProduct= productService.getProductID(id);
+
+        if(isNull( productService.getProductID(id))){
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(rProduct);
+    }
 
     @PutMapping("/{id}")
     //return String becase the whole html site are Strings!!!
@@ -35,7 +48,7 @@ public class ProductController {
         return "product-form";
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Product> addProduct(@RequestBody RequestProduct productDto){
 
         Product newProduct = new Product(productDto.getId(),productDto.getName(),productDto.getQuantity(),productDto.getPrice());

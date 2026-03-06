@@ -8,8 +8,8 @@ import com.calt.w1crud.coffeestore.Service.ProductService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-//This class used for create all tables
-@Component
+//This class used for create all tables at first run to create some sample!
+//@Component
 public class DataInitializer implements CommandLineRunner {
 
 
