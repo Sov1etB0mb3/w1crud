@@ -1,11 +1,10 @@
-package com.calt.w1crud.coffestore.Controller;
+package com.calt.w1crud.coffeestore.Controller;
 
-import com.calt.w1crud.coffestore.DTO.RequestProduct;
-import com.calt.w1crud.coffestore.Entity.Product;
-import com.calt.w1crud.coffestore.Service.*;
+import com.calt.w1crud.coffeestore.DTO.RequestProduct;
+import com.calt.w1crud.coffeestore.Entity.Product;
+import com.calt.w1crud.coffeestore.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,34 +15,27 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
-    @GetMapping("/")
+    @GetMapping("")
     //return String becase the whole html site are Strings!!!
-    public String getProduct(){
-        List<Product> productList = productService.getAllProducts();
+    public ResponseEntity<List<Product>> getProduct(){
+        List<Product> productList= productService.getAllProducts();
 
-        return "products";
+        if(productList.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(productList);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     //return String becase the whole html site are Strings!!!
     public String editProduct(@PathVariable("id") String id, Model model){
         model.addAttribute("aProduct",productService.getProductID(id));
 
         return "product-form";
     }
-    @PostMapping("/new")
-    //return String becase the whole html site are Strings!!!
-    public String editProduct(Model model){
-        model.addAttribute("aProduct",new Product());
-        return "product-form";
-    }
-    @PostMapping("/save")
-    public String updateProduct(@ModelAttribute("aProduct") Product newProduct
-           ){
-        productService.saveProduct(newProduct);
-    return "redirect:/products";
-    }
-    @PostMapping("/add")
+
+    @PostMapping("/")
     public ResponseEntity<Product> addProduct(@RequestBody RequestProduct productDto){
 
         Product newProduct = new Product(productDto.getId(),productDto.getName(),productDto.getQuantity(),productDto.getPrice());

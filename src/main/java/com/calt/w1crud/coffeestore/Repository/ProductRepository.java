@@ -1,7 +1,7 @@
-package com.calt.w1crud.coffestore.Repository;
+package com.calt.w1crud.coffeestore.Repository;
 
 
-import com.calt.w1crud.coffestore.Entity.Product;
+import com.calt.w1crud.coffeestore.Entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

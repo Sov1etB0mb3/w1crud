@@ -1,8 +1,9 @@
-package com.calt.w1crud.coffestore.Config;
+package com.calt.w1crud.coffeestore.Config;
 
-import com.calt.w1crud.coffestore.Entity.Category;
-import com.calt.w1crud.coffestore.Entity.Product;
-import com.calt.w1crud.coffestore.Service.*;
+import com.calt.w1crud.coffeestore.Entity.Category;
+import com.calt.w1crud.coffeestore.Entity.Product;
+import com.calt.w1crud.coffeestore.Service.CategoryService;
+import com.calt.w1crud.coffeestore.Service.ProductService;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
-package com.calt.w1crud.coffestore.DTO;
+package com.calt.w1crud.coffeestore.DTO;
 
-import com.calt.w1crud.coffestore.Entity.Category;
+import com.calt.w1crud.coffeestore.Entity.Category;
 
 
 public class RequestProduct {

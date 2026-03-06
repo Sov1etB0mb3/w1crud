@@ -1,4 +1,4 @@
-package com.calt.w1crud.coffestore.Entity;
+package com.calt.w1crud.coffeestore.Entity;
 
 import jakarta.persistence.*;
 

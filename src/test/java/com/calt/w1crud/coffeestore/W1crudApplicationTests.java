@@ -1,4 +1,4 @@
-package com.calt.w1crud.coffestore;
+package com.calt.w1crud.coffeestore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
