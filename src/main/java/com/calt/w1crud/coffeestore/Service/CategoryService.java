@@ -26,6 +26,9 @@ public class CategoryService {
         categoryRepository.save(category);
     }
     public void saveCategoryfromDTO(RequestCategory rCategory){
+        if(categoryRepository.existsByName(rCategory.getName())){
+            throw new DataIntegrityViolationException("This category existed!");
+        }
         categoryRepository.save(new Category(rCategory.getName(), rCategory.getDescription()));
 
     }

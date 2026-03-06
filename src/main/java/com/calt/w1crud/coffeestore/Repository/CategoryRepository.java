@@ -14,4 +14,6 @@ public interface CategoryRepository extends JpaRepository<Category,Long> {
 
     @Override
     void deleteAllById(Iterable<? extends Long> longs);
+
+    boolean existsByName(String name);
 }

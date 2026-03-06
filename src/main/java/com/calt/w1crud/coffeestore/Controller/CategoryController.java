@@ -54,8 +54,9 @@ public class CategoryController {
     @PostMapping("")
 
     public ResponseEntity<String> addProduct(@RequestBody RequestCategory requestCategory){
-            categoryService.saveCategoryfromDTO(requestCategory);
-            return ResponseEntity.status(201).body("Created!");
+
+        categoryService.saveCategoryfromDTO(requestCategory);
+        return ResponseEntity.status(201).body("Created!");
 
 
 
